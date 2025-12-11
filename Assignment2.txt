@@ -1,0 +1,110 @@
+class Book {
+  String title;
+  String author;
+  double price;
+  Book(this.title, this.author, this.price);
+  double discountedPrice(double discountPercent) {
+    double discountAmount = price * (discountPercent / 100);
+    return price - discountAmount;
+  }
+
+  void displayDetails() {
+    print('Title: $title');
+    print('Author: $author');
+    print('Original Price: \TK${price.toStringAsFixed(2)}');
+  }
+}
+
+class Employee {
+  String name;
+  double salary;
+
+  Employee(this.name, this.salary);
+}
+
+class Manager extends Employee {
+  String department;
+
+  Manager(String name, double salary, this.department) : super(name, salary);
+
+  void displayInfo() {
+    print('--- Manager Details ---');
+    print('Name: $name');
+    print('Salary: \TK${salary.toStringAsFixed(2)}');
+    print('Department: $department');
+  }
+}
+
+class Developer extends Employee {
+  String programmingLanguage;
+
+  Developer(String name, double salary, this.programmingLanguage) : super(name, salary);
+
+  void displayInfo() {
+    print('--- Developer Details ---');
+    print('Name: $name');
+    print('Salary: \TK${salary.toStringAsFixed(2)}');
+    print('Programming Language: $programmingLanguage');
+  }
+}
+
+abstract class Appliance {
+  void turnOn();
+  void turnOff();
+}
+
+class Fan extends Appliance {
+  @override
+  void turnOn() {
+    print('Fan is now running');
+  }
+
+  @override
+  void turnOff() {
+    print('Fan is now stopped');
+  }
+}
+
+class Light extends Appliance {
+  @override
+  void turnOn() {
+    print('Light is switched on');
+  }
+
+  @override
+  void turnOff() {
+    print('Light is switched off');
+  }
+}
+
+void main() {
+
+  Book book1 = Book('The Dart Programming Language', 'Sakib Khan', 515.00);
+  Book book2 = Book('Flutter Development Guide', 'Sharuk Khan', 630.00);
+
+  print('Book 1:');
+  book1.displayDetails();
+  print('Discounted Price (20%): \TK${book1.discountedPrice(20).toStringAsFixed(2)}');
+
+  print('\nBook 2:');
+  book2.displayDetails();
+  print('Discounted Price (15%): \TK${book2.discountedPrice(15).toStringAsFixed(2)}');
+
+  Manager manager = Manager('Rahim', 75000.0, 'Sales & Marketing');
+  Developer developer = Developer('Kalim', 65000.0, 'Flutter');
+
+  manager.displayInfo();
+  print(''); // Added an empty string to print() for a newline
+  developer.displayInfo();
+
+  Fan fan = Fan();
+  Light light = Light();
+
+  print('\nTesting Fan:');
+  fan.turnOn();
+  fan.turnOff();
+
+  print('\nTesting Light:');
+  light.turnOn();
+  light.turnOff();
+}
